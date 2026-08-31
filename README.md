@@ -1,37 +1,45 @@
-# RoadSense AI — Real-Time Traffic Intelligence & Incident Detection
+# 🚦 RoadSense AI — Real-Time Traffic Intelligence & Incident Detection
 
-A runnable computer-vision portfolio project using YOLO + multi-object tracking + trajectory analytics. It detects vehicles, keeps persistent IDs, estimates approximate speed, scores congestion, flags stopped vehicles and wrong-way motion, and uses a simple time-to-collision heuristic for close moving pairs. Events and metrics are written to CSV, with an optional Streamlit dashboard.
+> An AI-powered computer vision system for real-time vehicle detection, tracking, speed estimation, congestion analysis, and road-safety event detection.
 
-## Run
+RoadSense AI analyzes traffic video using **YOLO-based object detection, multi-object tracking, trajectory analysis, and event detection**. The system assigns persistent vehicle IDs, estimates approximate vehicle speeds, evaluates congestion, detects stopped and wrong-way vehicles, and identifies potential collision-risk situations.
 
-```bash
-python -m venv .venv
-# Windows PowerShell
-.venv\Scripts\Activate.ps1
-# macOS/Linux
-# source .venv/bin/activate
-pip install -r requirements.txt
-python main.py --source 0
-```
+A **Streamlit dashboard** provides real-time traffic analytics and visualizes vehicle counts, estimated speed, congestion levels, and safety incidents.
 
-Video file:
-```bash
-python main.py --source path/to/traffic.mp4
-```
+---
 
-Dashboard:
-```bash
-streamlit run dashboard.py
-```
+## 🎯 Project Overview
 
-## Calibration
+RoadSense AI is designed as an end-to-end traffic intelligence pipeline:
 
-`config.yaml` contains `pixels_per_meter`. Replace 40.0 with a value calibrated for your camera. Monocular speed is only an estimate without proper camera calibration/homography. Collision-risk is also a heuristic, not a safety-certified predictor.
-
-## LinkedIn demo
-
-Record 30–60 seconds showing live IDs, trajectories, congestion changes, and an incident alert. Then show `outputs/events.csv` and the Streamlit dashboard.
-
-Suggested title: **RoadSense AI — Real-Time Traffic Intelligence & Incident Detection**
-
-Suggested one-liner: *Built a real-time computer-vision system that detects, tracks, and analyzes road traffic using YOLO, multi-object tracking, trajectory analytics, and event detection.*
+```text
+Traffic Video / Camera
+        │
+        ▼
+┌──────────────────────┐
+│ Vehicle Detection    │
+│ YOLO-based Model     │
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│ Multi-Object         │
+│ Tracking              │
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│ Trajectory Analysis  │
+└──────────┬───────────┘
+           │
+     ┌─────┼──────────────┐
+     ▼     ▼              ▼
+   Speed  Congestion   Incident
+ Estimation Analysis   Detection
+     │     │              │
+     └─────┼──────────────┘
+           ▼
+     CSV Metrics & Events
+           │
+           ▼
+    Streamlit Dashboard
