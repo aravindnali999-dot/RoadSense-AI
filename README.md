@@ -1,45 +1,44 @@
 # 🚦 RoadSense AI — Real-Time Traffic Intelligence & Incident Detection
 
-> An AI-powered computer vision system for real-time vehicle detection, tracking, speed estimation, congestion analysis, and road-safety event detection.
+RoadSense AI is an end-to-end computer-vision system for analyzing road traffic from video streams.
 
-RoadSense AI analyzes traffic video using **YOLO-based object detection, multi-object tracking, trajectory analysis, and event detection**. The system assigns persistent vehicle IDs, estimates approximate vehicle speeds, evaluates congestion, detects stopped and wrong-way vehicles, and identifies potential collision-risk situations.
+The system combines **YOLO-based object detection, multi-object tracking, trajectory analysis, traffic metrics, and event detection** to provide real-time traffic intelligence.
 
-A **Streamlit dashboard** provides real-time traffic analytics and visualizes vehicle counts, estimated speed, congestion levels, and safety incidents.
+## ✨ Features
 
----
+- 🚗 Vehicle detection using YOLO
+- 🆔 Persistent vehicle IDs through multi-object tracking
+- 📈 Approximate vehicle-speed estimation
+- 🚦 Traffic congestion scoring
+- 🛑 Stopped-vehicle detection
+- ↔️ Wrong-way movement detection
+- ⚠️ Collision-risk detection using a time-to-collision (TTC) heuristic
+- 📊 Timestamped traffic metrics
+- 📝 Incident/event logging to CSV
+- 📺 Real-time annotated video output
+- 📊 Interactive Streamlit analytics dashboard
 
-## 🎯 Project Overview
-
-RoadSense AI is designed as an end-to-end traffic intelligence pipeline:
+## 🏗️ System Architecture
 
 ```text
 Traffic Video / Camera
-        │
-        ▼
-┌──────────────────────┐
-│ Vehicle Detection    │
-│ YOLO-based Model     │
-└──────────┬───────────┘
-           │
-           ▼
-┌──────────────────────┐
-│ Multi-Object         │
-│ Tracking              │
-└──────────┬───────────┘
-           │
-           ▼
-┌──────────────────────┐
-│ Trajectory Analysis  │
-└──────────┬───────────┘
-           │
-     ┌─────┼──────────────┐
-     ▼     ▼              ▼
-   Speed  Congestion   Incident
- Estimation Analysis   Detection
-     │     │              │
-     └─────┼──────────────┘
-           ▼
-     CSV Metrics & Events
-           │
-           ▼
-    Streamlit Dashboard
+        ↓
+YOLO Object Detection
+        ↓
+Multi-Object Tracking
+        ↓
+Persistent Vehicle IDs
+        ↓
+Trajectory Analysis
+        ↓
+┌──────────────────────────────┐
+│ Speed Estimation             │
+│ Congestion Analysis          │
+│ Stopped Vehicle Detection    │
+│ Wrong-Way Detection          │
+│ Collision-Risk Analysis      │
+└──────────────────────────────┘
+        ↓
+CSV Metrics + Incident Logs
+        ↓
+Streamlit Dashboard
